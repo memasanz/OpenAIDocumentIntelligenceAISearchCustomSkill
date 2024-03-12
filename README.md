@@ -25,7 +25,8 @@ OPENAI_API_VERSION = '2023-07-01-preview'
 OPENAI_API_TYPE = 'azure'
 
 STORAGE_ACCOUNT = '<storage-account here>'
-STORAGE_ACCOUNT_CONTAINER = '<container holding docs>'
+STORAGE_ACCOUNT_CONTAINER = '<container holding docs>' 
+STORAGE_ACCOUNT_CONTAINER_FOR_SPLITS = '<container holding split up docs>' 
 STORAGE_CONNECTION_STRING = '<ConnectionString>'
 
 functionAppUrlAndKey = 'https://<azurefunctionapp>.azurewebsites.net/api/httpTriggerDocumentIntelligence?code=<keygoeshere>'

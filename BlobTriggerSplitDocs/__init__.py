@@ -5,6 +5,7 @@ from azure.identity import DefaultAzureCredential
 from azure.storage.blob import BlobServiceClient
 from PyPDF2 import PdfWriter, PdfReader
 from azure.functions import InputStream
+from dotenv import load_dotenv  
 
 #Function Triggered when a new file lands in blog storage to create a pdf for the file.
 def pdfsplit(source):
@@ -12,10 +13,13 @@ def pdfsplit(source):
     try:
         logging.info('inside try')
         blob_files = []
+        load_dotenv() 
         logging.info("about to get information from environment variables")
-        source_container = 'fiber' 
+        source_container = os.environ['STORAGE_ACCOUNT_CONTAINER']
         dest_container = os.environ['STORAGE_ACCOUNT_CONTAINER_FOR_SPLITS'] 
         connection_string = os.environ['STORAGE_ACCOUNT_CONNECTION_STRING']
+
+        
         logging.info('source_container = ' + source_container)
 
         file_name_without_extension = os.path.splitext(source)[0] 
