@@ -7,7 +7,7 @@
 - Cognitive Search (be sure to enable semantic search on the resource)
 - Document Intelligence or Azure AI Multi-Service Account (turn on System Assigned Managed Identity - and provide access to storage account at the container level "Storage Blob Data Reader". )
 
-### .env file for running the notebook
+### .env file for running the notebook 
 In your .env file include the following parameters:
 
 ```
