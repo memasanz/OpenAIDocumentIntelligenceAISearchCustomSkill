@@ -5,8 +5,9 @@
       "name": "myblob",
       "type": "blobTrigger",
       "direction": "in",
-      "path": "fiber/{name}",
-      "connection": "mmxxblobxstore_STORAGE"
+      "path": "raw/{name}",
+      "connection": "STORAGE_ACCOUNT_CONNECTION_STRING"
     }
   ]
 }
+

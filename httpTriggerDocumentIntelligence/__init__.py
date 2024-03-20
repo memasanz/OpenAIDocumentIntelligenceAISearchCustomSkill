@@ -22,8 +22,9 @@ from PyPDF2 import PdfWriter, PdfReader
 import tempfile
 import tiktoken
 import time
+from dotenv import load_dotenv  
 
-#code 3/01 s 4:54pm
+
 
 def num_tokens_from_string(string: str) -> int:
     encoding = tiktoken.get_encoding("cl100k_base")
@@ -41,23 +42,6 @@ def normalize_text1(s, sep_token = " \n "):
 def normalize_text2(s, sep_token = " \n "):
     s = s.replace("\n", "")
     return s
-
-def base64_encode_file(source):
-    token_credential = DefaultAzureCredential()
-    path = "https://" + os.environ['STORAGE_ACCOUNT'] + ".blob.core.windows.net/"
-
-    blob_service_client = BlobServiceClient(
-        account_url=path,
-        credential=token_credential
-    )
-    
-    container_name = os.environ['STORAGE_ACCOUNT_CONTAINER']
-    blob_name = source
-    blob_client = blob_service_client.get_blob_client(container_name, blob_name)  
-    blob_data = blob_client.download_blob().readall()  
-    
-    pdf_base64 = base64.b64encode(blob_data).decode('utf-8')  
-    return pdf_base64
 
 def get_tables(result):
     try:

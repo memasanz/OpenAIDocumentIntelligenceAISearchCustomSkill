@@ -21,6 +21,7 @@ def pdfsplit(source):
 
         
         logging.info('source_container = ' + source_container)
+        logging.info('STORAGE_ACCOUNT_CONTAINER_FOR_SPLITS =' + dest_container)
 
         file_name_without_extension = os.path.splitext(source)[0] 
         logging.info('file name without existing extension', file_name_without_extension)
@@ -31,12 +32,14 @@ def pdfsplit(source):
         logging.info("downloading file")
         blob_client = container_client.get_blob_client(source)  
         logging.info('about to download blob file')
+
         with open(os.path.join(tempfile.gettempdir(), source), "wb") as my_blob: 
             logging.info('downloading blob file') 
             download_stream = blob_client.download_blob()  
             my_blob.write(download_stream.readall()) 
 
-        with open(os.path.join(tempfile.gettempdir(), source), "rb") as input_pdf:  
+        with open(os.path.join(tempfile.gettempdir(), source), "rb") as input_pdf:
+            logging.info('splitting pdf')  
             pdf_reader = PdfReader(input_pdf)  
             num_pages = len(pdf_reader.pages)
             logging.info(f"Number of pages in the pdf: {num_pages}")
